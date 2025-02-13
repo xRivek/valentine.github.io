@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorpresa 💗</title>
+    <link rel="stylesheet" href="sorpresa.css">
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: "Arial", sans-serif;
+            text-align: center;
+            background-color: #ffe6f2;
+            color: #d63384;
+        }
+
+        /* Estilos para los botones */
+        button {
+            padding: 12px 25px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Botón "Sí" */
+        #yesBtn {
+            background-color: #ff8fab;
+            color: white;
+            box-shadow: 0px 4px 10px rgba(255, 143, 171, 0.4);
+        }
+        #yesBtn:hover {
+            background-color: #ff6f91;
+            transform: scale(1.1);
+        }
+
+        /* Botón "No" */
+        #noBtn {
+            background-color: #ffd6e0;
+            color: #ff4081;
+            box-shadow: 0px 4px 10px rgba(255, 214, 224, 0.4);
+        }
+        #noBtn:hover {
+            background-color: #ffb6c1;
+            transform: scale(1.1);
+        }
+
+        /* Contenedor del botón de descarga */
+        .download-container {
+            position: absolute;
+            top: 62%; /* Ajustado para que aparezca más arriba */
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            display: none; /* Oculto inicialmente */
+        }
+
+        /* Botón de descarga */
+        #downloadButton {
+            background-color: #ff4f8b;
+            color: white;
+            border-radius: 50px;
+            padding: 12px 25px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0px 4px 10px rgba(255, 79, 139, 0.4);
+        }
+        #downloadButton:hover {
+            background-color: #d63384;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <canvas id="background"></canvas>
+
+    <div class="container">
+        <h1 id="question"></h1>
+        <div class="buttons">
+            <button id="yesBtn">Sí 💗</button>
+            <button id="noBtn">No 💔</button>
+        </div>
+        <p id="responseMessage"></p>
+    </div>
+
+    <!-- Contenedor del botón de descarga -->
+    <div class="download-container" id="downloadContainer">
+        <a id="pdfDownloadLink" href="https://drive.google.com/uc?export=download&id=1z0U4C1eJ1fHzXC_EQF3G54b-mtT0WgBj" target="_blank" download>
+            <button id="downloadButton">Da click aquí corazon JIJI</button>
+        </a>
+    </div>
+
+    <script>
+        const questionText = "¿Quieres ser mi San Valentín? 💘";
+        const questionElement = document.getElementById("question");
+        const yesBtn = document.getElementById("yesBtn");
+        const noBtn = document.getElementById("noBtn");
+        const responseMessage = document.getElementById("responseMessage");
+        const container = document.querySelector(".container");
+        const downloadContainer = document.getElementById("downloadContainer");
+
+        // Imagen sorpresa
+        const surpriseImage = document.createElement("img");
+        surpriseImage.style.width = "10%";
+        surpriseImage.style.borderRadius = "15px";
+        surpriseImage.style.marginTop = "20px";
+        surpriseImage.style.display = "none";
+        surpriseImage.style.position = "fixed";
+        surpriseImage.style.top = "25%";
+        surpriseImage.style.left = "50%";
+        surpriseImage.style.transform = "translate(-50%, -50%)";
+        surpriseImage.src = "img/sorpresa.gif";
+        container.appendChild(surpriseImage);
+
+        let index = 0;
+        function typeQuestion() {
+            if (index < questionText.length) {
+                questionElement.textContent += questionText.charAt(index);
+                index++;
+                setTimeout(typeQuestion, 100);
+            } else {
+                questionElement.style.borderRight = "none";
+            }
+        }
+
+        setTimeout(typeQuestion, 500);
+
+        yesBtn.addEventListener("click", () => {
+            responseMessage.textContent = "JIJIJIJIJIJI TE AMO💗";
+            responseMessage.style.display = "block";
+            noBtn.style.display = "none";
+            yesBtn.style.transform = "scale(1.2)";
+
+            setTimeout(() => {
+                surpriseImage.style.display = "block";
+            }, 10);
+
+            // Mostrar el botón de descarga después de un breve retraso
+            setTimeout(() => {
+                downloadContainer.style.display = "block";
+            }, 1000);
+        });
+
+        noBtn.addEventListener("click", () => {
+            responseMessage.textContent = "¿Estás segura miamor? 🥺💔";
+            responseMessage.style.display = "block";
+        });
+
+        /* Partículas de fondo */
+        const canvas = document.getElementById("background");
+        const ctx = canvas.getContext("2d");
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particles = [];
+
+        function createParticle() {
+            return {
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: Math.random() * 8 + 2,
+                speedY: Math.random() * 2 + 0.5,
+                opacity: Math.random() * 0.8 + 0.2,
+            };
+        }
+
+        for (let i = 0; i < 50; i++) {
+            particles.push(createParticle());
+        }
+
+        function drawParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            for (let particle of particles) {
+                ctx.fillStyle = `rgba(255, 0, 100, ${particle.opacity})`;
+                ctx.font = `${particle.size}px Arial`;
+                ctx.fillText("💗", particle.x, particle.y);
+                particle.y -= particle.speedY;
+
+                if (particle.y < -10) {
+                    particle.y = canvas.height;
+                    particle.x = Math.random() * canvas.width;
+                }
+            }
+
+            requestAnimationFrame(drawParticles);
+        }
+
+        drawParticles();
+    </script>
+</body>
+</html>
