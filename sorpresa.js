@@ -5,21 +5,7 @@ const noBtn = document.getElementById("noBtn");
 const responseMessage = document.getElementById("responseMessage");
 const container = document.querySelector(".container");
 
-// Agregar la imagen de la sorpresa
-const surpriseImage = document.createElement("img");
-surpriseImage.style.width = "10%"; // Ajusta el tamaño de la imagen
-surpriseImage.style.borderRadius = "15px"; // Redondear bordes si lo deseas
-surpriseImage.style.marginTop = "20px";
-surpriseImage.style.display = "none"; // Al principio no visible
-surpriseImage.style.position = "fixed"; // Fijar la imagen en la pantalla
-surpriseImage.style.top = "25%"; // Centrar verticalmente
-surpriseImage.style.left = "50%"; // Centrar horizontalmente
-surpriseImage.style.transform = "translate(-50%, -50%)"; // Ajuste perfecto para centrar
 
-// Asignar la fuente de la imagen (reemplaza 'img/sorpresa.jpg' con la ruta de tu imagen)
-surpriseImage.src = "https://github.com/xRivek/valentine.github.io/blob/main/sorpresa.gif"; 
-
-container.appendChild(surpriseImage); // Añadir la imagen al contenedor
 
 let index = 0;
 function typeQuestion() {
@@ -40,10 +26,6 @@ yesBtn.addEventListener("click", () => {
     noBtn.style.display = "none";
     yesBtn.style.transform = "scale(1.2)";
     
-    // Mostrar la imagen después de un breve retraso
-    setTimeout(() => {
-        surpriseImage.style.display = "block"; // Mostrar la imagen
-    }, 10); // Esperar 1 segundo antes de mostrar la imagen
 
     // Mostrar el botón de descarga después de un breve retraso
     setTimeout(() => {
