@@ -17,7 +17,7 @@ surpriseImage.style.left = "50%"; // Centrar horizontalmente
 surpriseImage.style.transform = "translate(-50%, -50%)"; // Ajuste perfecto para centrar
 
 // Asignar la fuente de la imagen (reemplaza 'img/sorpresa.jpg' con la ruta de tu imagen)
-surpriseImage.src = "img/sorpresa.gif"; 
+surpriseImage.src = "sorpresa.gif"; 
 
 container.appendChild(surpriseImage); // Añadir la imagen al contenedor
 
