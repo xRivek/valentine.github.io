@@ -103,7 +103,18 @@
         const container = document.querySelector(".container");
         const downloadContainer = document.getElementById("downloadContainer");
 
-        
+        // Imagen sorpresa
+        const surpriseImage = document.createElement("img");
+        surpriseImage.style.width = "10%";
+        surpriseImage.style.borderRadius = "15px";
+        surpriseImage.style.marginTop = "20px";
+        surpriseImage.style.display = "none";
+        surpriseImage.style.position = "fixed";
+        surpriseImage.style.top = "25%";
+        surpriseImage.style.left = "50%";
+        surpriseImage.style.transform = "translate(-50%, -50%)";
+        surpriseImage.src = "img/sorpresa.gif";
+        container.appendChild(surpriseImage);
 
         let index = 0;
         function typeQuestion() {
